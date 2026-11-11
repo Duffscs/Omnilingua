@@ -1,0 +1,3 @@
+<Project>
+  <Import Project="Omnilingua.Cpp.Codegen.targets" />
+</Project>

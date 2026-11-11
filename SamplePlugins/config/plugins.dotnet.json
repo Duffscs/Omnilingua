@@ -1,0 +1,8 @@
+[
+  {
+    "name": "Logger",
+    "type": "dotnet",
+    "assembly": "Logger.Dotnet.dll",
+    "entryPoint": "Logger.Dotnet.Plugin"
+  }
+]

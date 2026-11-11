@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.24)
+project(PremierCpp LANGUAGES CXX)
+find_package(OmnilinguaCpp CONFIG REQUIRED)
+omnilingua_add_plugin(Premier.Cpp SOURCES Plugin.cpp)
+install(TARGETS Premier.Cpp RUNTIME DESTINATION . LIBRARY DESTINATION .)

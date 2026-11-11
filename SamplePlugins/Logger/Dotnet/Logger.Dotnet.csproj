@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Omnilingua.Dotnet" Version="9.9.9" />
+    <PackageReference Include="Omnilingua.Dotnet.SourceGen" Version="9.9.9" PrivateAssets="all" />
+  </ItemGroup>
+<PropertyGroup><PackageId>Logger.Dotnet</PackageId><Version>9.9.9</Version><IsOmnilinguaPackage>true</IsOmnilinguaPackage><GeneratePackageOnBuild>$(PublishLocalPackages)</GeneratePackageOnBuild><PackageOutputPath>$(LocalNugetFeed)</PackageOutputPath></PropertyGroup>
+</Project>

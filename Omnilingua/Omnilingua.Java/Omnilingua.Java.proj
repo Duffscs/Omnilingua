@@ -1,0 +1,26 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="Java.props" />
+  <Import Project="..\..\Directory.Build.props" />
+  <PropertyGroup>
+    <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+    <JavaOutput>$(MSBuildThisFileDirectory)bin\$(Configuration)</JavaOutput>
+  </PropertyGroup>
+  <ItemGroup>
+    <JavaSources Include="$(MSBuildThisFileDirectory)src\**\*.java" />
+  </ItemGroup>
+  <Target Name="Build">
+    <Error Condition="!Exists('$(JavaHome)\bin\javac.exe')" Text="JDK 17+ requis : définir JavaHome ou JAVA_HOME pour compiler Omnilingua.Java et Logger.Java." />
+    <MakeDir Directories="$(JavaOutput)\classes" />
+    <Exec Command="&quot;$(JavaHome)\bin\javac.exe&quot; --release 17 -encoding UTF-8 -d &quot;$(JavaOutput)\classes&quot; @(JavaSources->'&quot;%(FullPath)&quot;', ' ')" />
+    <Exec Command="&quot;$(JavaHome)\bin\jar.exe&quot; --create --file &quot;$(JavaOutput)\Omnilingua.Java.jar&quot; -C &quot;$(JavaOutput)\classes&quot; ." />
+    <ItemGroup>
+      <PublicGuides Include="$(OmnilinguaRoot)docs\*.md" />
+      <PublicSite Include="$(OmnilinguaRoot)docs\.vitepress\dist\**\*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(PublicGuides)" DestinationFolder="$(JavaOutput)\documentation\docs" />
+    <Delete Files="$(JavaOutput)\documentation\docs\java-python.md;$(JavaOutput)\documentation\docs\site\java-python.html" />
+    <Copy SourceFiles="@(PublicSite)" DestinationFiles="@(PublicSite->'$(JavaOutput)\documentation\docs\site\%(RecursiveDir)%(Filename)%(Extension)')" />
+    <Exec Command="&quot;$(JavaHome)\bin\jar.exe&quot; --update --file &quot;$(JavaOutput)\Omnilingua.Java.jar&quot; -C &quot;$(JavaOutput)\documentation&quot; docs" />
+    <Exec Condition="'$(PublishLocalPackages)' != 'false'" Command="powershell -NoProfile -ExecutionPolicy Bypass -File &quot;$(OmnilinguaRoot)build\Publish-LocalPackage.ps1&quot; -Kind Maven -PackageId omnilingua-java -Artifact &quot;$(JavaOutput)\Omnilingua.Java.jar&quot; -Feed &quot;$(LocalMavenFeed)&quot;" />
+  </Target>
+</Project>

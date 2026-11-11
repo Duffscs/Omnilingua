@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+        <!-- La JVM embarquée ne prend pas en charge la compatibilité CET de l’apphost sur Windows. -->
+        <CetCompat>false</CetCompat>
+	</PropertyGroup>
+	<ItemGroup>
+	  <InternalsVisibleTo Include="Dotnet.SourceGen.Tests" />
+	  <InternalsVisibleTo Include="Logger.SmokeTests" />
+	  <ProjectReference Include="..\Omnilingua.Dotnet\Omnilingua.Dotnet.csproj" />
+	</ItemGroup>
+
+  <PropertyGroup><PackageId>Omnilingua.Runtime</PackageId><Version>9.9.9</Version><IsOmnilinguaPackage>true</IsOmnilinguaPackage><GeneratePackageOnBuild>$(PublishLocalPackages)</GeneratePackageOnBuild><PackageOutputPath>$(LocalNugetFeed)</PackageOutputPath><NoWarn>$(NoWarn);NU5117</NoWarn></PropertyGroup>
+  <ItemGroup><PackageReference Include="Omnilingua.Java.Bridge" Version="9.9.9" /><PackageReference Include="Omnilingua.Python.Bridge" Version="9.9.9" /></ItemGroup>
+</Project>

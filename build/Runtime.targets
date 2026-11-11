@@ -1,0 +1,9 @@
+<Project>
+  <PropertyGroup Condition="'$(MSBuildProjectName)' == 'Omnilingua'">
+    <IncludeHttpPluginRuntime Condition="'$(IncludeHttpPluginRuntime)' == ''">true</IncludeHttpPluginRuntime>
+  </PropertyGroup>
+  <Target Name="ConfigureOmnilinguaPluginRuntime" BeforeTargets="_GenerateRuntimeConfigurationFilesInputCache" DependsOnTargets="ResolveFrameworkReferences" Condition="'$(MSBuildProjectName)' == 'Omnilingua' and '$(IncludeHttpPluginRuntime)' == 'true'">
+    <Error Condition="'$(SelfContained)' == 'true'" Text="La configuration locale des plugins HTTP exige un Omnilingua dépendant des frameworks installés." />
+    <ItemGroup><RuntimeFramework Include="Microsoft.AspNetCore.App" Version="10.0.0" /></ItemGroup>
+  </Target>
+</Project>

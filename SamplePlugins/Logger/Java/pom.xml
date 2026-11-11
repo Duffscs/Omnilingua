@@ -1,0 +1,8 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>io.omnilingua.samples</groupId><artifactId>logger-java</artifactId><version>9.9.9</version>
+  <properties><maven.compiler.release>17</maven.compiler.release><project.build.sourceEncoding>UTF-8</project.build.sourceEncoding></properties>
+  <repositories><repository><id>omnilingua-local</id><url>file:///${env.PROJECT_DIR_PACKAGE}/local_maven</url></repository></repositories>
+  <dependencies><dependency><groupId>io.omnilingua</groupId><artifactId>omnilingua-java</artifactId><version>9.9.9</version></dependency></dependencies>
+  <build><sourceDirectory>src</sourceDirectory></build>
+</project>

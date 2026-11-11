@@ -1,0 +1,35 @@
+# Fichiers locaux de Visual Studio et de travail temporaire.
+.vs/
+.vscode/
+.tmp/
+*.user
+*.suo
+
+# Sorties et fichiers intermédiaires .NET et C++.
+**/bin/
+**/obj/
+**/x64/
+**/Debug/
+**/Release/
+*.pdb
+*.ilk
+*.ipch
+*.tlog
+*.log
+
+# Fichiers générés par CPython.
+__pycache__/
+*.py[cod]
+
+# Paramètres locaux pouvant contenir des secrets.
+.env
+.env.*
+!.env.example
+
+# Distributions et installations locales des packages.
+**/artifacts/
+**/packages/
+*.nupkg
+*.snupkg
+*.whl
+*.egg-info/

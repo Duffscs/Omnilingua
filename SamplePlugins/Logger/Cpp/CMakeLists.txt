@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.24)
+project(LoggerCpp LANGUAGES CXX)
+find_package(OmnilinguaCpp CONFIG REQUIRED)
+omnilingua_add_plugin(Logger.Cpp SOURCES Plugin.cpp Logger.cpp HEADERS Plugin.h)
+install(TARGETS Logger.Cpp RUNTIME DESTINATION . LIBRARY DESTINATION .)

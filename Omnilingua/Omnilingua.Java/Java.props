@@ -1,0 +1,8 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <JavaHome Condition="'$(JavaHome)' == '' and Exists('$(JAVA_HOME)\bin\javac.exe')">$(JAVA_HOME)</JavaHome>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(JavaHome)' == '' and Exists('$(ProgramW6432)\Android\openjdk')">
+    <JavaHome>$([System.IO.Directory]::GetDirectories('$(ProgramW6432)\Android\openjdk').GetValue(0))</JavaHome>
+  </PropertyGroup>
+</Project>

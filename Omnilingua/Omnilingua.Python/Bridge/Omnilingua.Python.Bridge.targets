@@ -1,0 +1,6 @@
+<Project>
+  <Target Name="CopyOmnilinguaPythonBridge" AfterTargets="Build">
+    <Copy SourceFiles="$(MSBuildThisFileDirectory)..\runtimes\win-x64\native\Omnilingua.Python.Bridge.dll" DestinationFolder="$(TargetDir)" SkipUnchangedFiles="true" />
+    <ItemGroup><_OmnilinguaPythonSdk Include="$(MSBuildThisFileDirectory)..\sdk\omnilingua_python\*.py" /></ItemGroup><Copy SourceFiles="@(_OmnilinguaPythonSdk)" DestinationFolder="$(TargetDir)Omnilingua.Python\omnilingua_python" SkipUnchangedFiles="true" />
+  </Target>
+</Project>

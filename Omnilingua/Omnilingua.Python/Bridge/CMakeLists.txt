@@ -1,0 +1,6 @@
+find_package(Python3 3.10 REQUIRED COMPONENTS Interpreter Development)
+find_package(Threads REQUIRED)
+add_library(Omnilingua.Python.Bridge SHARED Bridge.cpp)
+target_include_directories(Omnilingua.Python.Bridge PRIVATE ${Python3_INCLUDE_DIRS})
+target_link_libraries(Omnilingua.Python.Bridge PRIVATE Omnilingua::Cpp Threads::Threads ${CMAKE_DL_LIBS})
+install(TARGETS Omnilingua.Python.Bridge RUNTIME DESTINATION . LIBRARY DESTINATION .)

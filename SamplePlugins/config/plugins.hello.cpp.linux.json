@@ -1,0 +1,15 @@
+[
+  {
+    "name": "Logger",
+    "type": "cpp",
+    "assembly": "libLogger.Cpp.so"
+  },
+  {
+    "name": "Hello.Cpp",
+    "type": "cpp",
+    "assembly": "libHello.Cpp.so",
+    "dependencies": {
+      "ILogger": "Logger"
+    }
+  }
+]

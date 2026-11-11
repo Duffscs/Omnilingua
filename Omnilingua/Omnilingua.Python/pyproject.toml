@@ -1,0 +1,10 @@
+[build-system]
+requires = []
+build-backend = "build_backend"
+backend-path = ["."]
+
+[project]
+name = "omnilingua-python"
+version = "9.9.9"
+description = "SDK Python du protocole de plugins Omnilingua"
+requires-python = ">=3.10"

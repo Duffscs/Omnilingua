@@ -1,0 +1,4 @@
+[
+  { "name": "Logger", "type": "dotnet", "assembly": "Logger.Dotnet.dll", "entryPoint": "Logger.Dotnet.Plugin" },
+  { "name": "Hello.Cpp", "type": "cpp", "assembly": "Hello.Cpp.dll", "dependencies": { "ILogger": "Logger" } }
+]

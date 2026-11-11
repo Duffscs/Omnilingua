@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net10.0</TargetFramework><Nullable>enable</Nullable><ImplicitUsings>enable</ImplicitUsings></PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../Omnilingua/Runtime/Omnilingua.csproj" />
+    <ProjectReference Include="../../Omnilingua/Omnilingua.Dotnet.SourceGen/Omnilingua.Dotnet.SourceGen.csproj" />
+    <Analyzer Include="../../Omnilingua/Omnilingua.Dotnet.SourceGen/bin/$(Configuration)/netstandard2.0/Omnilingua.Dotnet.SourceGen.dll" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.14.0" />
+  </ItemGroup>
+</Project>

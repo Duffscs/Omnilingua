@@ -1,0 +1,8 @@
+[
+  {
+    "name": "Logger",
+    "type": "java",
+    "assembly": "Logger.Java.jar",
+    "entryPoint": "logger.Plugin"
+  }
+]

@@ -1,0 +1,4 @@
+[
+  { "name": "Logger", "type": "dotnet", "assembly": "Logger.Dotnet.dll", "entryPoint": "Logger.Dotnet.Plugin" },
+  { "name": "Hello.Python", "type": "python", "assembly": "Hello.Python/plugin.py", "entryPoint": "Plugin", "dependencies": { "ILogger": "Logger" } }
+]

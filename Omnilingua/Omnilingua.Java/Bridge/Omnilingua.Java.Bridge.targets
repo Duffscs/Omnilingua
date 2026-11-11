@@ -1,0 +1,6 @@
+<Project>
+  <Target Name="CopyOmnilinguaJavaBridge" AfterTargets="Build">
+    <Copy SourceFiles="$(MSBuildThisFileDirectory)..\runtimes\win-x64\native\Omnilingua.Java.Bridge.dll" DestinationFolder="$(TargetDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(MSBuildThisFileDirectory)..\sdk\Omnilingua.Java.jar" DestinationFolder="$(TargetDir)" SkipUnchangedFiles="true" />
+  </Target>
+</Project>

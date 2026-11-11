@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType><TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable><CetCompat>false</CetCompat>
+  </PropertyGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <ProjectReference Include="../../Omnilingua/Runtime/Omnilingua.csproj" />
+    <ProjectReference Include="../../SamplePlugins/Hello/Dotnet/Hello.Dotnet.csproj" />
+    <PackageReference Include="Logger.Dotnet" Version="9.9.9" />
+    <None Include="../../artifacts/cpp/$(Configuration)/plugins/Logger.Cpp.dll" Link="Logger.Cpp.dll" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="../../Omnilingua/Omnilingua.Java/bin/$(Configuration)/Omnilingua.Java.jar" Link="Omnilingua.Java.jar" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="../../Omnilingua/Omnilingua.Java/bin/$(Configuration)/Omnilingua.Java.Bridge.dll" Link="Omnilingua.Java.Bridge.dll" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="../../SamplePlugins/Logger/Java/bin/$(Configuration)/Logger.Java.jar" Link="Logger.Java.jar" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="../../SamplePlugins/Hello/Java/bin/$(Configuration)/Hello.Java.jar" Link="Hello.Java.jar" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="../../Omnilingua/Omnilingua.Python/src/**/*.py" Link="Omnilingua.Python/%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="../../Omnilingua/Omnilingua.Python/bin/$(Configuration)/Omnilingua.Python.Bridge.dll" Link="Omnilingua.Python.Bridge.dll" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="../../SamplePlugins/Logger/Python/*.py" Link="Logger.Python/%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="../../SamplePlugins/Hello/Python/*.py" Link="Hello.Python/%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="../../artifacts/cpp/$(Configuration)/plugins/Hello.Cpp.dll" Link="Hello.Cpp.dll" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

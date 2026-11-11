@@ -1,0 +1,4 @@
+[
+  { "name": "Logger", "type": "dotnet", "assembly": "Logger.Dotnet.dll", "entryPoint": "Logger.Dotnet.Plugin" },
+  { "name": "Hello.Java", "type": "java", "assembly": "Hello.Java.jar", "entryPoint": "hello.Plugin", "dependencies": { "ILogger": "Logger" } }
+]

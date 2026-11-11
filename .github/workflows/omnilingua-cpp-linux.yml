@@ -1,0 +1,26 @@
+name: Omnilingua C++ Linux
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Dépendances de compilation
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++-13 cmake ninja-build openjdk-17-jdk
+          python -m pip install libclang==18.1.1
+      - name: Construire et tester les bibliothèques Linux
+        env:
+          CXX: g++-13
+          CMAKE_GENERATOR: Ninja
+          JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
+        run: bash ci/build-linux.sh

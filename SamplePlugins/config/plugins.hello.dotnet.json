@@ -1,0 +1,15 @@
+[
+  {
+    "name": "Logger",
+    "type": "dotnet",
+    "assembly": "Logger.Dotnet.dll",
+    "entryPoint": "Logger.Dotnet.Plugin"
+  },
+  {
+    "name": "Hello.Dotnet",
+    "type": "dotnet",
+    "assembly": "Hello.Dotnet.dll",
+    "entryPoint": "Hello.Dotnet.Plugin",
+    "dependencies": { "ILogger": "Logger" }
+  }
+]

@@ -1,0 +1,8 @@
+<Project DefaultTargets="Build">
+  <Import Project="..\..\Directory.Build.props" />
+  <PropertyGroup><PythonExecutable Condition="'$(PythonExecutable)' == ''">python</PythonExecutable></PropertyGroup>
+  <Target Name="Build">
+    <MakeDir Directories="$(LocalPythonFeed)" />
+    <Exec Command="&quot;$(PythonExecutable)&quot; -m pip wheel --no-deps --no-cache-dir --no-build-isolation --wheel-dir &quot;$(LocalPythonFeed)&quot; &quot;$(MSBuildThisFileDirectory).&quot;" />
+  </Target>
+</Project>

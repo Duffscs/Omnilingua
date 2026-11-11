@@ -1,0 +1,30 @@
+<Solution>
+  <Configurations><Platform Name="Any CPU" /><Platform Name="x64" /></Configurations>
+  <Folder Name="/Omnilingua/">
+    <Project Path="Omnilingua/Omnilingua.Dotnet/Omnilingua.Dotnet.csproj" />
+    <Project Path="Omnilingua/Omnilingua.Dotnet.SourceGen/Omnilingua.Dotnet.SourceGen.csproj" />
+    <Project Path="Omnilingua/Omnilingua.Cpp/Omnilingua.Cpp.csproj" />
+    <Project Path="Omnilingua/Omnilingua.Java/Bridge/Omnilingua.Java.Bridge.vcxproj" />
+    <Project Path="Omnilingua/Omnilingua.Python/Bridge/Omnilingua.Python.Bridge.vcxproj" />
+    <Project Path="Omnilingua/Runtime/Omnilingua.csproj">
+      <BuildDependency Project="Omnilingua/Omnilingua.Java/Bridge/Omnilingua.Java.Bridge.vcxproj" />
+      <BuildDependency Project="Omnilingua/Omnilingua.Python/Bridge/Omnilingua.Python.Bridge.vcxproj" />
+    </Project>
+  </Folder>
+  <Folder Name="/SamplePlugins/">
+    <Project Path="SamplePlugins/Hello/Dotnet/Hello.Dotnet.csproj">
+      <BuildDependency Project="Omnilingua/Omnilingua.Dotnet/Omnilingua.Dotnet.csproj" />
+      <BuildDependency Project="Omnilingua/Omnilingua.Dotnet.SourceGen/Omnilingua.Dotnet.SourceGen.csproj" />
+    </Project>
+    <Project Path="SamplePlugins/Logger/Dotnet/Logger.Dotnet.csproj">
+      <BuildDependency Project="Omnilingua/Omnilingua.Dotnet/Omnilingua.Dotnet.csproj" />
+      <BuildDependency Project="Omnilingua/Omnilingua.Dotnet.SourceGen/Omnilingua.Dotnet.SourceGen.csproj" />
+    </Project>
+    <File Path="SamplePlugins/Hello/Cpp/CMakeLists.txt" />
+    <File Path="SamplePlugins/Logger/Cpp/CMakeLists.txt" />
+    <File Path="SamplePlugins/Logger/Java/Logger.Java.proj" />
+    <File Path="SamplePlugins/Hello/Java/Hello.Java.proj" />
+    <File Path="SamplePlugins/Hello/Python/Hello.Python.proj" />
+    <File Path="SamplePlugins/Logger/Python/Logger.Python.proj" />
+  </Folder>
+</Solution>

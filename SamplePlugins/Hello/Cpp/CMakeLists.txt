@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.24)
+project(HelloCpp LANGUAGES CXX)
+find_package(OmnilinguaCpp CONFIG REQUIRED)
+omnilingua_add_plugin(Hello.Cpp SOURCES Plugin.cpp HEADERS Plugin.h)
+install(TARGETS Hello.Cpp RUNTIME DESTINATION . LIBRARY DESTINATION .)

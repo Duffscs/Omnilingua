@@ -1,0 +1,19 @@
+<Project>
+  <ItemGroup Condition="'$(IsOmnilinguaPackage)' == 'true'">
+    <None Include="$(OmnilinguaRoot)docs\*.md" Pack="true" PackagePath="docs/" />
+    <None Include="$(OmnilinguaRoot)docs\.vitepress\dist\**\*" Pack="true" PackagePath="docs/site/%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+  <Import Project="build\Runtime.targets" />
+  <Target Name="InvalidateDevelopmentPackageCache" AfterTargets="Pack"
+          Condition="'$(PublishLocalPackages)' == 'true' and '$(IsOmnilinguaPackage)' == 'true'">
+    <Exec Command="powershell -NoProfile -ExecutionPolicy Bypass -File &quot;$(OmnilinguaRoot)build\Publish-LocalPackage.ps1&quot; -Kind Nuget -PackageId &quot;$(PackageId)&quot;" />
+    <!-- Les imports C++ sont évalués avant les targets du consommateur : restaurer
+         immédiatement les nouveaux headers après avoir invalidé leur ancienne version. -->
+    <Exec Condition="'$(PackageId)' == 'Omnilingua.Cpp'" Command="dotnet restore &quot;$(OmnilinguaRoot)build\NativeSdkCache.csproj&quot; --force --no-cache --nologo" />
+  </Target>
+  <Target Name="RefreshMutableDevelopmentPackages" BeforeTargets="ResolvePackageAssets"
+          Condition="'$(BuildingSolutionFile)' == 'true' and '$(DesignTimeBuild)' != 'true' and ('$(MSBuildProjectName)' == 'Omnilingua' or '$(MSBuildProjectName)' == 'Logger.Dotnet' or '$(MSBuildProjectName)' == 'Hello.Dotnet')">
+    <Exec Command="dotnet restore &quot;$(MSBuildProjectFullPath)&quot; --force --no-cache --nologo" />
+  </Target>
+
+</Project>

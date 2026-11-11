@@ -1,0 +1,17 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\..\Omnilingua\Omnilingua.Java\Java.props" />
+  <Import Project="..\..\..\Directory.Build.props" />
+  <PropertyGroup>
+    <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+    <JavaOutput>$(MSBuildThisFileDirectory)bin\$(Configuration)</JavaOutput>
+
+    <SdkJar>$(USERPROFILE)\.m2\repository\io\omnilingua\omnilingua-java\9.9.9\omnilingua-java-9.9.9.jar</SdkJar>
+  </PropertyGroup>
+  <ItemGroup><JavaSources Include="$(MSBuildThisFileDirectory)src\**\*.java" /></ItemGroup>
+  <Target Name="Build">
+    <Exec Command="powershell -NoProfile -ExecutionPolicy Bypass -File &quot;$(OmnilinguaRoot)build\Publish-LocalPackage.ps1&quot; -Kind Maven -PackageId omnilingua-java -Feed &quot;$(LocalMavenFeed)&quot; -Restore" />
+    <MakeDir Directories="$(JavaOutput)\classes" />
+    <Exec Command="&quot;$(JavaHome)\bin\javac.exe&quot; --release 17 -encoding UTF-8 -cp &quot;$(SdkJar)&quot; -d &quot;$(JavaOutput)\classes&quot; @(JavaSources->'&quot;%(FullPath)&quot;', ' ')" />
+    <Exec Command="&quot;$(JavaHome)\bin\jar.exe&quot; --create --file &quot;$(JavaOutput)\Logger.Java.jar&quot; -C &quot;$(JavaOutput)\classes&quot; ." />
+  </Target>
+</Project>

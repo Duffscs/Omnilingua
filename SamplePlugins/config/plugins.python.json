@@ -1,0 +1,8 @@
+[
+  {
+    "name": "Logger",
+    "type": "python",
+    "assembly": "Logger.Python/plugin.py",
+    "entryPoint": "Plugin"
+  }
+]

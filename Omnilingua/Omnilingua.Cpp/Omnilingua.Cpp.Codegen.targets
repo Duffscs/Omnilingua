@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_CppCodegenSdk>$(MSBuildThisFileDirectory)</_CppCodegenSdk>
+    <CppCodegenPython Condition="'$(CppCodegenPython)' == ''">python</CppCodegenPython>
+    <CppCodegenPythonPath Condition="'$(CppCodegenPythonPath)' == '' and Exists('$(MSBuildThisFileDirectory)..\..\.tmp\cpp-codegen\clang')">$(MSBuildThisFileDirectory)..\..\.tmp\cpp-codegen</CppCodegenPythonPath>
+    <CppCodegenPythonPath Condition="'$(CppCodegenPythonPath)' == ''">$(PYTHONPATH)</CppCodegenPythonPath>
+    <CppCodegenMsvcInclude Condition="'$(CppCodegenMsvcInclude)' == ''">$(VCToolsInstallDir)include</CppCodegenMsvcInclude>
+    <CppCodegenOutputDirectory Condition="'$(CppCodegenOutputDirectory)' == ''">$(IntDir)generated\</CppCodegenOutputDirectory>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile><AdditionalIncludeDirectories>$(CppCodegenOutputDirectory);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories></ClCompile>
+  </ItemDefinitionGroup>
+  <!-- Réanalyser les inclusions et options à chaque build ; le générateur ne réécrit pas un résultat identique. -->
+  <ItemGroup><CppExportContract Include="@(CppPlugin)" /></ItemGroup>
+  <Target Name="GenerateCppContracts" BeforeTargets="ClCompile" Condition="'@(CppExportContract)' != ''">
+    <RemoveDuplicates Inputs="@(CppExportContract->'%(Filename)')"><Output TaskParameter="Filtered" ItemName="_CppDistinctContractNames" /></RemoveDuplicates>
+    <Error Condition="'@(_CppDistinctContractNames->Count())' != '@(CppExportContract->Count())'" Text="Les headers CppExportContract doivent avoir des noms de fichiers distincts." />
+    <PropertyGroup><_CppCodegenCrtInclude>$([System.String]::Copy('$(UniversalCRT_IncludePath)').TrimEnd(';'))</_CppCodegenCrtInclude></PropertyGroup>
+    <MakeDir Directories="$(CppCodegenOutputDirectory)" />
+    <Exec Command="&quot;$(CppCodegenPython)&quot; &quot;$(_CppCodegenSdk)generator\generate_contract.py&quot; --header &quot;%(CppExportContract.FullPath)&quot; --output &quot;$(CppCodegenOutputDirectory)%(CppExportContract.Filename).g.h&quot; --include &quot;$(_CppCodegenSdk)include&quot; --system-include &quot;$(CppCodegenMsvcInclude)&quot; --system-include &quot;$(_CppCodegenCrtInclude)&quot; $(CppCodegenExtraArgs)"
+          EnvironmentVariables="PYTHONPATH=$([MSBuild]::Escape('$(CppCodegenPythonPath)'));LIBCLANG_LIBRARY_FILE=$(CppCodegenLibClang)" />
+  </Target>
+</Project>

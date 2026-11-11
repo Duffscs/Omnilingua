@@ -1,0 +1,13 @@
+<Project DefaultTargets="Build">
+  <Import Project="..\..\..\Directory.Build.props" />
+  <PropertyGroup>
+    <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+    <PythonExecutable Condition="'$(PythonExecutable)' == ''">python</PythonExecutable>
+    <PythonOutput>$(MSBuildThisFileDirectory)bin\$(Configuration)</PythonOutput>
+  </PropertyGroup>
+  <Target Name="Build">
+    <Exec Command="&quot;$(PythonExecutable)&quot; -m pip install --no-index --no-cache-dir --force-reinstall --upgrade --find-links &quot;$(LocalPythonFeed)&quot; --target &quot;$(PythonOutput)\Omnilingua.Python&quot; -r &quot;$(MSBuildThisFileDirectory)requirements.txt&quot;" />
+    <ItemGroup><PluginFiles Include="$(MSBuildThisFileDirectory)*.py" /></ItemGroup>
+    <Copy SourceFiles="@(PluginFiles)" DestinationFolder="$(PythonOutput)\Logger.Python" />
+  </Target>
+</Project>

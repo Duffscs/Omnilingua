@@ -1,0 +1,5 @@
+add_executable(Cpp.PluginTests main.cpp)
+target_link_libraries(Cpp.PluginTests PRIVATE Omnilingua::Cpp ${CMAKE_DL_LIBS})
+add_dependencies(Cpp.PluginTests Logger.Cpp Hello.Cpp)
+add_test(NAME Cpp.PluginTests COMMAND Cpp.PluginTests "$<TARGET_FILE:Logger.Cpp>" "$<TARGET_FILE:Hello.Cpp>")
+set_tests_properties(Cpp.PluginTests PROPERTIES PASS_REGULAR_EXPRESSION "\\[LoggerCPP\\].*\\[Hello.Cpp\\]")

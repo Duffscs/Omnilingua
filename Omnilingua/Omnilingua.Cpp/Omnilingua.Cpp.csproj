@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework><EnableDefaultItems>false</EnableDefaultItems>
+    <PackageId>Omnilingua.Cpp</PackageId><Version>9.9.9</Version><IsOmnilinguaPackage>true</IsOmnilinguaPackage>
+    <GeneratePackageOnBuild>$(PublishLocalPackages)</GeneratePackageOnBuild><IncludeBuildOutput>false</IncludeBuildOutput>
+    <PackageOutputPath>$(LocalNugetFeed)</PackageOutputPath><NoWarn>$(NoWarn);NU5128</NoWarn>
+    <Description>SDK C++20 du protocole Omnilingua et générateur de contrats.</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="include\**\*;generator\*.py;generator\requirements.txt;Omnilingua.Cpp.props;Omnilingua.Cpp.targets;Omnilingua.Cpp.Codegen.targets;OmnilinguaCppConfig.cmake;cmake\*.cmake;CMakeLists.txt" Pack="true" PackagePath="build/native/%(Identity)" />
+  </ItemGroup>
+</Project>

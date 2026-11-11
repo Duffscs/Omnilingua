@@ -1,0 +1,18 @@
+<Project>
+  <PropertyGroup>
+    <OmnilinguaDevelopmentVersion>9.9.9</OmnilinguaDevelopmentVersion>
+    <_PackageEnvironmentFile>$(MSBuildThisFileDirectory).env</_PackageEnvironmentFile>
+    <PROJECT_DIR_PACKAGE Condition="'$(PROJECT_DIR_PACKAGE)' == '' and Exists('$(_PackageEnvironmentFile)')">$([System.Text.RegularExpressions.Regex]::Match($([System.IO.File]::ReadAllText('$(_PackageEnvironmentFile)')), '(?m)^\s*PROJECT_DIR_PACKAGE\s*=\s*([^\r\n]+)').Groups[1].Value.Trim())</PROJECT_DIR_PACKAGE>
+    <PROJECT_DIR_PACKAGE Condition="'$(PROJECT_DIR_PACKAGE)' == ''">$(MSBuildThisFileDirectory)artifacts\packages</PROJECT_DIR_PACKAGE>
+    <PROJECT_DIR_PACKAGE>$([System.IO.Path]::GetFullPath($([System.IO.Path]::Combine('$(MSBuildThisFileDirectory)', '$(PROJECT_DIR_PACKAGE)'))))</PROJECT_DIR_PACKAGE>
+    <LocalNugetFeed Condition="'$(LocalNugetFeed)' == ''">$(PROJECT_DIR_PACKAGE)/local_nuget</LocalNugetFeed>
+    <LocalMavenFeed Condition="'$(LocalMavenFeed)' == ''">$(PROJECT_DIR_PACKAGE)/local_maven</LocalMavenFeed>
+    <LocalPythonFeed Condition="'$(LocalPythonFeed)' == ''">$(PROJECT_DIR_PACKAGE)/local_pypi</LocalPythonFeed>
+    <RestoreAdditionalProjectSources Condition="Exists('$(LocalNugetFeed)')">$(LocalNugetFeed);$(RestoreAdditionalProjectSources)</RestoreAdditionalProjectSources>
+    <PublishLocalPackages Condition="'$(PublishLocalPackages)' == ''">true</PublishLocalPackages>
+    <CppCodegenPythonPath Condition="'$(CppCodegenPythonPath)' == ''">$(MSBuildThisFileDirectory).tmp\cpp-codegen</CppCodegenPythonPath>
+    <OmnilinguaRoot>$(MSBuildThisFileDirectory)</OmnilinguaRoot>
+    <NuGetPackageRoot Condition="'$(NuGetPackageRoot)' == '' and '$(NUGET_PACKAGES)' != ''">$(NUGET_PACKAGES)\</NuGetPackageRoot>
+    <NuGetPackageRoot Condition="'$(NuGetPackageRoot)' == ''">$(USERPROFILE)\.nuget\packages\</NuGetPackageRoot>
+  </PropertyGroup>
+</Project>
